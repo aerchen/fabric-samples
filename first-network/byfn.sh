@@ -32,6 +32,9 @@ export PATH=${PWD}/../bin:${PWD}:$PATH
 export FABRIC_CFG_PATH=${PWD}
 export VERBOSE=false
 
+# import utils
+. utils.sh
+
 # Print the usage message
 function printHelp() {
   echo "Usage: "
@@ -287,7 +290,7 @@ function networkDown() {
     #Cleanup images
     removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
-    rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ./org3-artifacts/crypto-config/ channel-artifacts/org3.json
+    rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ca-crypto ./org3-artifacts/crypto-config/ channel-artifacts/org3.json
     # remove the docker-compose yaml file that was customized to the example
     rm -f docker-compose-e2e.yaml
   fi
@@ -368,6 +371,10 @@ function generateCerts() {
   fi
   echo
   echo "Generate CCP files for Org1 and Org2"
+  rm -rf ./ca-crypto
+  replaceOrderers example.com 5
+  replacePeers org1.example.com 2
+  replacePeers org2.example.com 2
   ./ccp-generate.sh
 }
 
