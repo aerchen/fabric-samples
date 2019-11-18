@@ -1,20 +1,21 @@
 #!/bin/bash
 #
-# Copyright Darren Chen All Rights Reserved
+# Copyright Darren Chen. All Rights Reserved
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# replace orderers certs via fabric ca
-function replaceOrderers() {
+# replace certs of organization via fabric ca
+function replaceOrgCerts() {
     echo ""
-    echo "*************** start replace certs of orderers ****************"
+    echo "*************** start replace certs of ${ORG} ****************"
 
     WORK_DIR=$1
     ORG=$2
-    COUNT=$3
+    NODE_TYPE=$3
+    COUNT=$4
 
-    echo "generate ca cert for org ${ORG}"
+    echo "generate root cert of org: ${ORG}"
     ps -ef |grep ca-server | grep -v grep |awk '{print $2}'| xargs kill -9
     unset FABRIC_CA_HOME
     export FABRIC_CA_HOME=$WORK_DIR/ca-crypto/${ORG}
@@ -24,133 +25,69 @@ function replaceOrderers() {
     --cfg.affiliations.allowremove \
     --cfg.identities.allowremove &
 
-    sleep 2
+    sleep 1
 
-    echo "replace msp certs"
-    rm -rf $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/*
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/ca.${ORG}-cert.pem
-    cp $FABRIC_CA_HOME/*_sk $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-
-
-    ##################
-    echo "generate ca client for org ${ORG}"
+    echo "generate ca client of org: ${ORG}"
     unset FABRIC_CA_CLIENT_HOME
     export FABRIC_CA_CLIENT_HOME=$FABRIC_CA_HOME/client
     fabric-ca-client enroll -u http://admin:adminpw@localhost:7054
 
 
     ##################
-    echo "generate admin user for org ${ORG}"
+    echo "replace ca dir of org: ${ORG}"
+    rm -rf $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/*
+    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/ca.${ORG}-cert.pem
+    cp $FABRIC_CA_HOME/msp/keystore/*_sk $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/
+
+    echo "replace msp dir of org: ${ORG}"
+    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/msp/cacerts/ca.${ORG}-cert.pem
+
+    echo "replace users dir for org ${ORG}"
     fabric-ca-client register --id.secret password --id.type admin --id.name Admin@${ORG}
     fabric-ca-client enroll -u http://Admin@${ORG}:password@localhost:7054 -M $FABRIC_CA_HOME/users/Admin
 
-    echo "replace users certs & key"
+    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/users/Admin@${ORG}/msp/cacerts/ca.${ORG}-cert.pem
+    cp $FABRIC_CA_HOME/users/Admin/signcerts/cert.pem $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/users/Admin@${ORG}/msp/signcerts/Admin@${ORG}-cert.pem
+    rm -rf $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/users/Admin@${ORG}/msp/keystore
+    cp -r $FABRIC_CA_HOME/users/Admin/keystore $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/users/Admin@${ORG}/msp/
 
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/users/Admin@${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-    cp $FABRIC_CA_HOME/users/Admin/signcerts/cert.pem $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/users/Admin@${ORG}/msp/signcerts/Admin@${ORG}-cert.pem
-    rm -rf $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/users/Admin@${ORG}/msp/keystore
-    cp -r $FABRIC_CA_HOME/users/Admin/keystore $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/users/Admin@${ORG}/msp/
 
     ##################
-    echo "generate certs for orderers"
+    echo "replace ${NODE_TYPE}s dir of org: ${ORG}"
 
-    replaceOrderer $WORK_DIR $ORG
-
-    if [ $COUNT -ge 2 ]; then
-        for INDEX in $(seq 2 $COUNT);
+    if [ "$NODE_TYPE" == "peer" ]; then
+        for ((INDEX=0; INDEX<$COUNT; INDEX++));
         do
-            replaceOrderer $WORK_DIR $ORG $INDEX
+            replaceNode $WORK_DIR $ORG $NODE_TYPE $INDEX
         done
+    else
+        replaceNode $WORK_DIR $ORG $NODE_TYPE
+        if [ $COUNT -ge 2 ]; then
+            for INDEX in $(seq 2 $COUNT);
+            do
+                replaceNode $WORK_DIR $ORG $NODE_TYPE $INDEX
+            done
+        fi
     fi
 
-    echo "************replace orderers's certs successfully******************"
+    echo "************ replace certs of ${ORG} successfully ******************"
     ps -ef |grep ca-server | grep -v grep |awk '{print $2}'| xargs kill -9
     echo ""
 }
 
-function replaceOrderer() {
+function replaceNode() {
     WORK_DIR=$1
     ORG=$2
-    INDEX=$3
+    NODE_TYPE=$3
+    INDEX=$4
 
-    echo "replace certs & key for orderer${INDEX}.${ORG}"
-    fabric-ca-client register --id.secret password --id.type orderer --id.name orderer${INDEX}.${ORG}
-    fabric-ca-client enroll -u http://orderer${INDEX}.${ORG}:password@localhost:7054 -M $FABRIC_CA_HOME/orderers/orderer$INDEX
+    echo "replace certs of ${NODE_TYPE}${INDEX}.${ORG}"
+    fabric-ca-client register --id.secret password --id.type ${NODE_TYPE} --id.name ${NODE_TYPE}${INDEX}.${ORG}
+    fabric-ca-client enroll -u http://${NODE_TYPE}${INDEX}.${ORG}:password@localhost:7054 -M $FABRIC_CA_HOME/${NODE_TYPE}s/${NODE_TYPE}$INDEX
 
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/orderers/orderer${INDEX}.${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-    cp $FABRIC_CA_HOME/orderers/orderer${INDEX}/signcerts/cert.pem $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/orderers/orderer${INDEX}.${ORG}/msp/signcerts/orderer${INDEX}.${ORG}-cert.pem
-    rm -rf $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/orderers/orderer${INDEX}.${ORG}/msp/keystore
-    cp -r $FABRIC_CA_HOME/orderers/orderer${INDEX}/keystore $WORK_DIR/crypto-config/ordererOrganizations/${ORG}/orderers/orderer${INDEX}.${ORG}/msp/
+    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/${NODE_TYPE}s/${NODE_TYPE}${INDEX}.${ORG}/msp/cacerts/ca.${ORG}-cert.pem
+    cp $FABRIC_CA_HOME/${NODE_TYPE}s/${NODE_TYPE}${INDEX}/signcerts/cert.pem $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/${NODE_TYPE}s/${NODE_TYPE}${INDEX}.${ORG}/msp/signcerts/${NODE_TYPE}${INDEX}.${ORG}-cert.pem
+    rm -rf $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/${NODE_TYPE}s/${NODE_TYPE}${INDEX}.${ORG}/msp/keystore
+    cp -r $FABRIC_CA_HOME/${NODE_TYPE}s/${NODE_TYPE}${INDEX}/keystore $WORK_DIR/crypto-config/${NODE_TYPE}Organizations/${ORG}/${NODE_TYPE}s/${NODE_TYPE}${INDEX}.${ORG}/msp/
 }
-
-# replace peer certs via fabric ca
-function replacePeers() {
-    echo ""
-    echo "*************** start replace certs of peers ****************"
-
-    WORK_DIR=$1
-    ORG=$2
-    COUNT=$3
-
-    echo "generate ca cert for org ${ORG}"
-    ps -ef |grep ca-server | grep -v grep |awk '{print $2}'| xargs kill -9
-    unset FABRIC_CA_HOME
-    export FABRIC_CA_HOME=$WORK_DIR/ca-crypto/${ORG}
-
-    fabric-ca-server start \
-    -b admin:adminpw --csr.cn ca.${ORG} \
-    --cfg.affiliations.allowremove \
-    --cfg.identities.allowremove &
-
-    sleep 2
-
-    echo "replace msp certs"
-    rm -rf $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/*
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/ca.${ORG}-cert.pem
-    cp $FABRIC_CA_HOME/*_sk $WORK_DIR/crypto-config/peerOrganizations/${ORG}/ca/
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-
-
-    ##################
-    echo "generate ca client for org ${ORG}"
-    unset FABRIC_CA_CLIENT_HOME
-    export FABRIC_CA_CLIENT_HOME=$FABRIC_CA_HOME/client
-    fabric-ca-client enroll -u http://admin:adminpw@localhost:7054
-
-
-    ##################
-    echo "generate admin user for org ${ORG}"
-    fabric-ca-client register --id.secret password --id.type admin --id.name Admin@${ORG}
-    fabric-ca-client enroll -u http://Admin@${ORG}:password@localhost:7054 -M $FABRIC_CA_HOME/users/Admin
-
-    echo "replace users certs & key"
-
-    cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/users/Admin@${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-    cp $FABRIC_CA_HOME/users/Admin/signcerts/cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/users/Admin@${ORG}/msp/signcerts/Admin@${ORG}-cert.pem
-    rm -rf $WORK_DIR/crypto-config/peerOrganizations/${ORG}/users/Admin@${ORG}/msp/keystore
-    cp -r $FABRIC_CA_HOME/users/Admin/keystore $WORK_DIR/crypto-config/peerOrganizations/${ORG}/users/Admin@${ORG}/msp/
-
-    ##################
-    echo "generate certs for peers"
-
-    for ((INDEX=0; INDEX<$COUNT; INDEX++));
-    do
-        echo "replace certs & key for peer${INDEX}.${ORG}"
-        fabric-ca-client register --id.secret password --id.type peer --id.name peer${INDEX}.${ORG}
-        fabric-ca-client enroll -u http://peer${INDEX}.${ORG}:password@localhost:7054 -M $FABRIC_CA_HOME/peers/peer$INDEX
-
-        cp $FABRIC_CA_HOME/ca-cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/peers/peer${INDEX}.${ORG}/msp/cacerts/ca.${ORG}-cert.pem
-        cp $FABRIC_CA_HOME/peers/peer${INDEX}/signcerts/cert.pem $WORK_DIR/crypto-config/peerOrganizations/${ORG}/peers/peer${INDEX}.${ORG}/msp/signcerts/peer${INDEX}.${ORG}-cert.pem
-        rm -rf $WORK_DIR/crypto-config/peerOrganizations/${ORG}/peers/peer${INDEX}.${ORG}/msp/keystore
-        cp -r $FABRIC_CA_HOME/peers/peer${INDEX}/keystore $WORK_DIR/crypto-config/peerOrganizations/${ORG}/peers/peer${INDEX}.${ORG}/msp/
-    done
-
-    echo "************replace peers's certs successfully******************"
-    ps -ef |grep ca-server | grep -v grep |awk '{print $2}'| xargs kill -9
-    echo ""
-}
-
-
-
 

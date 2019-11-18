@@ -372,9 +372,10 @@ function generateCerts() {
   echo
   echo "Generate CCP files for Org1 and Org2"
   rm -rf ./ca-crypto
-  replaceOrderers $PWD example.com 5
-  replacePeers $PWD org1.example.com 2
-  replacePeers $PWD org2.example.com 2
+  replaceOrgCerts $PWD example.com orderer 5
+  replaceOrgCerts $PWD org1.example.com peer 2
+  replaceOrgCerts $PWD org2.example.com peer 2
+
   ./ccp-generate.sh
 }
 
