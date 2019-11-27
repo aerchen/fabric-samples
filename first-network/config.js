@@ -1,6 +1,6 @@
 'use strict';
 
-const basePath = '/app/msp';
+const basePath = '/app/cryptos';
 
 module.exports = {
   loggerLevel: 'trace',

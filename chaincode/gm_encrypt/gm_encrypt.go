@@ -8,13 +8,15 @@ SPDX-License-Identifier: Apache-2.0
 */
 
 import (
+	"bytes"
 	"fmt"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	"github.com/hyperledger/fabric/core/chaincode/shim/ext/entities"
 	pb "github.com/hyperledger/fabric/protos/peer"
-
+	"strconv"
+	"time"
 )
 
 const ENCKEY = "ENCKEY"
@@ -38,8 +40,8 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 }
 
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
-	fmt.Println("gm crypt test chaincode Invoke")
 	function, args := stub.GetFunctionAndParameters()
+	fmt.Println("gm crypt test chaincode Invoke", function, args)
 
 	if function == "invoke" {
 		// Make payment of X units from A to B
@@ -52,6 +54,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		if err != nil {
 			return shim.Error(fmt.Sprintf("Could not retrieve transient, err %s", err))
 		}
+		fmt.Println("\n tMap:", tMap)
 		if _, in := tMap[ENCKEY]; !in {
 			return shim.Error(fmt.Sprintf("Expected transient encryption key %s", ENCKEY))
 		}
@@ -61,10 +64,13 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		if err != nil {
 			return shim.Error(fmt.Sprintf("Could not retrieve transient, err %s", err))
 		}
+		fmt.Println("\n tMap:", tMap)
 		if _, in := tMap[ENCKEY]; !in {
 			return shim.Error(fmt.Sprintf("Expected transient encryption key %s", ENCKEY))
 		}
 		return t.cryptQuery(stub,args,tMap[ENCKEY])
+	}else if function == "getHistoryForKey" { //get history of values for a key
+		return t.getHistoryForKey(stub, args)
 	}
 
 	return shim.Error("Invalid invoke function name. Expecting \"invoke\" \"crypt_invoke\" \"crypt_query\"")
@@ -173,9 +179,11 @@ func (t *SimpleChaincode) cryptQuery(stub shim.ChaincodeStubInterface, args []st
 	// here we decrypt the state associated to key
 	cleartextValue, err := getStateAndDecrypt(stub, ent, key)
 	if err != nil {
+		fmt.Sprintf("getStateAndDecrypt failed, err %+v", err)
 		return shim.Error(fmt.Sprintf("getStateAndDecrypt failed, err %+v", err))
 	}
-
+	jsonResp := "{\"Name\":\"" + key + "\",\"Value\":\"" + string(cleartextValue) + "\"}"
+	fmt.Printf("cryptQuery Response:%s\n", jsonResp)
 	// here we return the decrypted value as a result
 	return shim.Success(cleartextValue)
 }
@@ -199,10 +207,76 @@ func getStateAndDecrypt(stub shim.ChaincodeStubInterface, ent entities.Encrypter
 	return ent.Decrypt(ciphertext)
 }
 
+
+func (t *SimpleChaincode) getHistoryForKey(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	if len(args) < 1 {
+		return shim.Error("Incorrect number of arguments. Expecting 1")
+	}
+
+	key := args[0]
+
+	fmt.Printf("- start getHistoryForKey: %s\n", key)
+
+	resultsIterator, err := stub.GetHistoryForKey(key)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	defer resultsIterator.Close()
+
+	// buffer is a JSON array containing historic values for the marble
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	for resultsIterator.HasNext() {
+		response, err := resultsIterator.Next()
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+		// Add a comma before array members, suppress it for the first array member
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"TxId\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(response.TxId)
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Value\":")
+		// if it was a delete operation on given key, then we need to set the
+		//corresponding value null. Else, we will write the response.Value
+		//as-is (as the Value itself a JSON marble)
+		if response.IsDelete {
+			buffer.WriteString("null")
+		} else {
+			buffer.WriteString(string(response.Value))
+		}
+
+		buffer.WriteString(", \"Timestamp\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(time.Unix(response.Timestamp.Seconds, int64(response.Timestamp.Nanos)).String())
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"IsDelete\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(strconv.FormatBool(response.IsDelete))
+		buffer.WriteString("\"")
+
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	fmt.Printf("- getHistoryForKey returning:\n%s\n", buffer.String())
+
+	return shim.Success(buffer.Bytes())
+}
+
 func main(){
 	factory.InitFactories(nil)
-	err:=shim.Start(&SimpleChaincode{factory.GetDefault()})
-	if err !=nil{
+	err := shim.Start(&SimpleChaincode{factory.GetDefault()})
+	if err != nil{
 		fmt.Printf("Error starting gm encrypt test chaincode, %s",err)
 	}
 }
