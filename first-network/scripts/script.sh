@@ -25,7 +25,8 @@ LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
 COUNTER=1
 MAX_RETRY=10
 
-CC_SRC_PATH="github.com/chaincode/chaincode_example02/go/"
+# CC_SRC_PATH="github.com/chaincode/chaincode_example02/go/"
+CC_SRC_PATH="github.com/chaincode/gm_encrypt/"
 if [ "$LANGUAGE" = "node" ]; then
 	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/chaincode_example02/node/"
 fi
@@ -104,6 +105,9 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	# Query chaincode on peer0.org1
 	echo "Querying chaincode on peer0.org1..."
 	chaincodeQuery 0 1 100
+	chaincodeQuery 1 1 100
+	chaincodeQuery 0 2 100
+	chaincodeQuery 1 2 100
 
 	# Invoke chaincode on peer0.org1 and peer0.org2
 	echo "Sending invoke transaction on peer0.org1 peer0.org2..."

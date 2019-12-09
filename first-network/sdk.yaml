@@ -14,13 +14,13 @@ services:
 
   sdk:
     container_name: sdk
-    image: fabric-node-gm-sdk
+    image: fabric-tx-server
     volumes:
         - /var/run/:/host/var/run/
         - ./config.js:/app/config.js
-        - ./crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/:/app/msp/
+        - ./crypto-config/peerOrganizations/org1.example.com/:/app/cryptos/
     networks:
       - byfn
     ports:
-      - 8080:80
+      - 80:80
 

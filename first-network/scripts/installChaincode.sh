@@ -7,7 +7,7 @@ echo "\___ \    | |     / _ \   | |_) |   | |  "
 echo " ___) |   | |    / ___ \  |  _ <    | |  "
 echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
-echo "Build your first network (BYFN) end-to-end test"
+echo "Install Chaincode end-to-end test"
 echo
 CHANNEL_NAME="$1"
 DELAY="$2"
@@ -78,21 +78,66 @@ instantiateGMChaincode() {
   echo
 }
 
+chaincodeGMQuery() {
+  PEER=$1
+  ORG=$2
+  setGlobals $PEER $ORG
+  EXPECTED_RESULT=$3
+  echo "===================== Querying on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME'... ===================== "
+  local rc=1
+  local starttime=$(date +%s)
+
+  # continue to poll
+  # we either get a successful response, or reach TIMEOUT
+  while
+    test "$(($(date +%s) - starttime))" -lt "$TIMEOUT" -a $rc -ne 0
+  do
+    sleep $DELAY
+    echo "Attempting to Query peer${PEER}.org${ORG} ...$(($(date +%s) - starttime)) secs"
+    set -x
+    peer chaincode query -C $CHANNEL_NAME -n $CHAINCODE -c '{"Args":["query","a"]}' >&log.txt
+    res=$?
+    set +x
+    test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')
+    test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
+    # removed the string "Query Result" from peer chaincode query command
+    # result. as a result, have to support both options until the change
+    # is merged.
+    test $rc -ne 0 && VALUE=$(cat log.txt | egrep '^[0-9]+$')
+    test "$VALUE" = "$EXPECTED_RESULT" && let rc=0
+  done
+  echo
+  cat log.txt
+  if test $rc -eq 0; then
+    echo "===================== Query successful on peer${PEER}.org${ORG} on channel '$CHANNEL_NAME' ===================== "
+  else
+    echo "!!!!!!!!!!!!!!! Query result on peer${PEER}.org${ORG} is INVALID !!!!!!!!!!!!!!!!"
+    echo "================== ERROR !!! FAILED to execute End-2-End Scenario =================="
+    echo
+    exit 1
+  fi
+}
+
 
 ## Install chaincode on peer0.org1 and peer0.org2
 echo "Installing chaincode on peers"
 installGMChaincode 0 1
-#installGMChaincode 1 1
-#installGMChaincode 0 2
-#installGMChaincode 1 2
+installGMChaincode 1 1
+installGMChaincode 0 2
+installGMChaincode 1 2
 
 # Instantiate chaincode on peer0.org1
 echo "Instantiating chaincode on peer0.org1..."
 instantiateGMChaincode 0 1
 
+chaincodeGMQuery 0 1
+chaincodeGMQuery 1 1
+chaincodeGMQuery 0 2
+chaincodeGMQuery 1 2
+
 
 echo
-echo "========= All GOOD, BYFN execution completed =========== "
+echo "========= All GOOD, Install Chaincode execution completed =========== "
 echo
 
 echo

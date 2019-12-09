@@ -62,6 +62,8 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	}else if function == "crypt_query"{
 		tMap, err := stub.GetTransient()
 		if err != nil {
+
+
 			return shim.Error(fmt.Sprintf("Could not retrieve transient, err %s", err))
 		}
 		fmt.Println("\n tMap:", tMap)
