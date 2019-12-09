@@ -94,20 +94,4 @@ services:
     networks:
       - byfn
 
-  sdk:
-    container_name: sdk
-    image: fabric-tx-server
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./config.js:/app/config.js
-      - ./crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/:/app/msp/
-    networks:
-      - byfn
-    depends_on:
-      - orderer.example.com
-      - peer0.org1.example.com
-      - peer1.org1.example.com
-      - peer0.org2.example.com
-      - peer1.org2.example.com
-    ports:
-      - 8080:80
+

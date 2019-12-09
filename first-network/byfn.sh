@@ -32,9 +32,6 @@ export PATH=${PWD}/../bin:${PWD}:$PATH
 export FABRIC_CFG_PATH=${PWD}
 export VERBOSE=false
 
-# import utils
-. utils.sh
-
 # Print the usage message
 function printHelp() {
   echo "Usage: "
@@ -371,10 +368,11 @@ function generateCerts() {
   fi
   echo
   echo "Generate CCP files for Org1 and Org2"
-  rm -rf ./ca-crypto
-  replaceOrgCerts $PWD example.com orderer 5
-  replaceOrgCerts $PWD org1.example.com peer 2
-  replaceOrgCerts $PWD org2.example.com peer 2
+# . utils.sh
+#  rm -rf ./ca-crypto
+#  replaceOrgCerts $PWD example.com orderer 5
+#  replaceOrgCerts $PWD org1.example.com peer 2
+#  replaceOrgCerts $PWD org2.example.com peer 2
 
   ./ccp-generate.sh
 }

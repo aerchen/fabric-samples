@@ -5,7 +5,9 @@ const basePath = '/app/cryptos';
 const org = 'org1.example.com';
 
 module.exports = {
-  loggerLevel: 'debug',
+  //loggerLevel: 'info',
+  //loggerLevel: 'debug',
+  loggerLevel: 'trace',
 
   user_id : `Admin@${org}`,
   msp_id : 'Org1MSP',
@@ -15,7 +17,7 @@ module.exports = {
 
   channel_id: 'mychannel',
 
-  tls: true,
+  tls: false,
   peers: [
     {
       url: `grpcs://peer0.${org}:7051`,
@@ -23,7 +25,7 @@ module.exports = {
       tls_cacerts: `${basePath}/peers/peer0.${org}/tls/server.crt`,
     },
     {
-        url: `grpcs://peer1.${org}:7051`,
+        url: `grpcs://peer1.${org}:8051`,
         target_name: `peer1.${org}`,
         tls_cacerts: `${basePath}/peers/peer1.${org}/tls/server.crt`,
     },

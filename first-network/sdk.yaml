@@ -3,24 +3,23 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-version: '2'
-
-
-
-networks:
-  byfn:
+version: "3"
 
 services:
-
   sdk:
-    container_name: sdk
-    image: fabric-tx-server
+    image: fabric-tx-server:gm
+    deploy:
+      replicas: 4
     volumes:
         - /var/run/:/host/var/run/
         - ./config.js:/app/config.js
         - ./crypto-config/peerOrganizations/org1.example.com/:/app/cryptos/
-    networks:
-      - byfn
     ports:
       - 80:80
+    extra_hosts:
+      - "orderer.example.com:192.168.43.242"
+      - "peer0.org1.example.com:192.168.43.242"
+      - "peer1.org1.example.com:192.168.43.242"
+      - "peer0.org2.example.com:192.168.43.242"
+      - "peer1.org2.example.com:192.168.43.242"
 
