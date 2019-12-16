@@ -9,6 +9,7 @@
 function replaceOrgCerts() {
     echo ""
     echo "*************** start replace certs of ${ORG} ****************"
+    echo ""
 
     WORK_DIR=$1
     ORG=$2
@@ -71,7 +72,10 @@ function replaceOrgCerts() {
     fi
 
     echo "************ replace certs of ${ORG} successfully ******************"
+    echo ""
+    echo "************ closeing ca server of ${ORG} ******************"
     ps -ef |grep ca-server | grep -v grep |awk '{print $2}'| xargs kill -9
+    sleep 1
     echo ""
 }
 
