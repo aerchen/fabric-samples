@@ -371,7 +371,7 @@ function generateCerts() {
   . utils.sh
   rm -rf ./ca-crypto
 #  replaceOrgCerts $PWD example.com orderer 5
-  replaceOrgCerts $PWD org1.example.com peer 2
+#  replaceOrgCerts $PWD org1.example.com peer 2
 #  replaceOrgCerts $PWD org2.example.com peer 3
 
   ./ccp-generate.sh
