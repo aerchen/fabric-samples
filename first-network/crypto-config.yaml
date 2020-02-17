@@ -10,8 +10,12 @@ OrdererOrgs:
   # ---------------------------------------------------------------------------
   # Orderer
   # ---------------------------------------------------------------------------
-  - Name: Orderer
-    Domain: example.com
+  - Name: Pbc
+    Domain: pbc.com
+    CA:
+      Country: CN
+      Province: Beijing
+      Locality: Beijing
     # ---------------------------------------------------------------------------
     # "Specs" - See PeerOrgs below for complete description
     # ---------------------------------------------------------------------------
@@ -19,8 +23,6 @@ OrdererOrgs:
       - Hostname: orderer
       - Hostname: orderer2
       - Hostname: orderer3
-      - Hostname: orderer4
-      - Hostname: orderer5
 
 # ---------------------------------------------------------------------------
 # "PeerOrgs" - Definition of organizations managing peer nodes
@@ -29,8 +31,12 @@ PeerOrgs:
   # ---------------------------------------------------------------------------
   # Org1
   # ---------------------------------------------------------------------------
-  - Name: Org1
-    Domain: org1.example.com
+  - Name: Pab
+    Domain: pingan.com
+    CA:
+      Country: CN
+      Province: Guangdong
+      Locality: Shenzhen
     EnableNodeOUs: true
     # ---------------------------------------------------------------------------
     # "Specs"
@@ -76,11 +82,31 @@ PeerOrgs:
     # ---------------------------------------------------------------------------
     Users:
       Count: 1
+
   # ---------------------------------------------------------------------------
   # Org2: See "Org1" for full specification
   # ---------------------------------------------------------------------------
-  - Name: Org2
-    Domain: org2.example.com
+  - Name: Cmb
+    Domain: cmbchina.com
+    CA:
+      Country: CN
+      Province: Guangdong
+      Locality: Shenzhen
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users:
+      Count: 1
+
+  # ---------------------------------------------------------------------------
+  # Org2: See "Org1" for full specification
+  # ---------------------------------------------------------------------------
+  - Name: Spdb
+    Domain: spdb.com
+    CA:
+      Country: CN
+      Province: Shanghai
+      Locality: Shanghai
     EnableNodeOUs: true
     Template:
       Count: 2
