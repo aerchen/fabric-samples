@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b53d427-5161-4300-adb6-0eaf07b01a77" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt.go" beforeDir="false" afterPath="$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/base/docker-compose-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/base/docker-compose-base.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/base/peer-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/base/peer-base.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/byfn.sh" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/byfn.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/configtx.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/configtx.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/crypto-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/crypto-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/docker-compose-cli.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/docker-compose-cli.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/docker-compose-etcdraft2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/docker-compose-etcdraft2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/scripts/script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/scripts/script.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/scripts/utils.sh" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/scripts/utils.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/sdk.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/sdk.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first-network/utils.sh" beforeDir="false" afterPath="$PROJECT_DIR$/first-network/utils.sh" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-653112881">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="18" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="5" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.opened" value="18" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="0d79f71a934ad00017645e9cce3469d381d8b65a028d24e1e3fda2ba11e62be6_sk" value="1" />
+          <entry key="2bbf6d32bf0c3ea4adbdaae787a1ecac65b31958e52bd258d9ea5d1bdd43e24f_sk" value="1" />
+          <entry key="51040a1679e0d97ee392a19aeba731d76a0c85b6e85e847450e646ff0b4ff4c0_sk" value="1" />
+          <entry key="59e347a08bfb1c67c0b2afb510ea91e543f8234c2f5e4448991977301bb836cb_sk" value="1" />
+          <entry key="5e5181305390c04d696f912f50db1bccdee33e70e9a9ab1c166c04bdc824d66f_sk" value="1" />
+          <entry key="8d56bc525aac192c07c6dc64e0f3d3dc139618dcd5561f24f643d5435557e9f8_sk" value="1" />
+          <entry key="8d6c28dd72fb6d92e3471d9866c19c8b907e56e9761e3d2224977bda20cc84b3_sk" value="1" />
+          <entry key="9a7cc8ed91b113c3d2c661155112f7d4bc8ea467659f60a8ed41c78eb12fab04_sk" value="1" />
+          <entry key="IssuerRevocationPrivateKey" value="1" />
+          <entry key="aeabdcd9b8fb7c2f740294534d2ae144da0c094db56b265e882f4a783a825a21_sk" value="1" />
+          <entry key="block" value="1" />
+          <entry key="c1b090222fdaa352e80b2316b17ce311f09f5f643b76d6d7e7ccb0a83d8ab580_sk" value="1" />
+          <entry key="crt" value="3" />
+          <entry key="d3edc626b3cdffa51310a440c3835433f18ab7407504be0da72776347472e8a8_sk" value="1" />
+          <entry key="d62a9b10056bf565223405f93953aa16208b7005e60c629b697161812026e44d_sk" value="1" />
+          <entry key="e962f9658e00bf6d111261d8b2b5888dbd6974648ddcac04db3b8d92abddb3bd_sk" value="1" />
+          <entry key="efdb3765076db0998d5e33cf44478dac2bdced7eb2f06e36f4b9bc7ae10f87eb_sk" value="1" />
+          <entry key="f356dd1a5d82511c6260bb57fc03fcee5194f8880767001fd782fc2a49afea62_sk" value="1" />
+          <entry key="f4051b26e2bdeea47cfa7b49919a113685f23f4a2fb538af6d2c50b1e21529f0_sk" value="1" />
+          <entry key="fc146f2eac3a5a74e115e6c69694439de12a5626efd6347fdc207e951c031fbe_sk" value="1" />
+          <entry key="go" value="29" />
+          <entry key="js" value="22" />
+          <entry key="json" value="10" />
+          <entry key="md" value="1" />
+          <entry key="pem" value="46" />
+          <entry key="sh" value="61" />
+          <entry key="ts" value="1" />
+          <entry key="tx" value="1" />
+          <entry key="yaml" value="56" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Go" value="29" />
+          <entry key="JSON" value="9" />
+          <entry key="JavaScript" value="22" />
+          <entry key="PLAIN_TEXT" value="131" />
+          <entry key="TypeScript" value="1" />
+          <entry key="YAML" value="56" />
+          <entry key="tsconfig" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="go" value="182" />
+          <entry key="js" value="177" />
+          <entry key="sh" value="3044" />
+          <entry key="yaml" value="486" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Go" value="182" />
+          <entry key="JavaScript" value="177" />
+          <entry key="PLAIN_TEXT" value="3044" />
+          <entry key="YAML" value="486" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts">
+        <counts>
+          <entry key="ESLintLanguageService" value="9" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fabcar/startFabric.sh">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="113" column="38" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="38" />
+              <folding>
+                <element signature="e#100#398#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt_test.go">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/first-network/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/first-network/sdk.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/first-network/docker-compose-cli.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1216">
+              <caret line="64" selection-start-line="64" selection-end-line="65" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/invoke.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/query.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/registerUser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1102">
+              <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270389">
+              <caret line="14244" column="4" selection-start-line="14244" selection-start-column="4" selection-end-line="14244" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>chaincodeInvoke</find>
+      <find>AND</find>
+      <find>&quot;:&quot;</find>
+      <find>raft</find>
+      <find>COMPOSE_FILE_RAFT2</find>
+      <find>SampleMultiNodeEtcdRaft</find>
+      <find>-P &quot;OR</find>
+      <find>joinChannelWithRetry</find>
+      <find>setGlobals</find>
+      <find>transient</find>
+      <find>org2.example.com</find>
+      <find>OrdererOrg</find>
+      <find>example</find>
+      <find>replaceO</find>
+      <find>checkPrereqs</find>
+      <find>networkUp</find>
+      <find>-c</find>
+      <find>-o</find>
+      <find>-a</find>
+      <find>CONSENSUS_TYPE</find>
+      <find>getopts</find>
+      <find>CHANNEL_NAME</find>
+      <find>if</find>
+      <find>marble</find>
+      <find>OR</find>
+      <find>generate</find>
+      <find>generateC</find>
+      <find>User5</find>
+      <find>OUT_FILE</find>
+      <find>generateCerts</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>orderer${index}.example</replace>
+      <replace>INDEX</replace>
+      <replace>192.168.43.242</replace>
+      <replace>peer</replace>
+      <replace>${NODE_TYPE}</replace>
+      <replace>TLS_ENABLED=false</replace>
+      <replace>${CHAINCODE}</replace>
+      <replace>-C ${CHANNEL_NAME} -n ${CHAINCODE}</replace>
+      <replace>Key</replace>
+      <replace>Install Chaincode</replace>
+      <replace>OR</replace>
+      <replace>:</replace>
+      <replace>:-P &quot;AND</replace>
+      <replace>${ORG}</replace>
+      <replace>other</replace>
+      <replace>User6</replace>
+      <replace>USER</replace>
+    </replaceStrings>
+  </component>
+  <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/docker-compose-ca.yaml" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/signcerts/peer1.org1.example.com-cert.pem" />
+        <option value="$PROJECT_DIR$/first-network/replaceorderer.sh" />
+        <option value="$PROJECT_DIR$/first-network/byfn-replaceorderer.sh" />
+        <option value="$PROJECT_DIR$/first-network/utils.sh" />
+        <option value="$PROJECT_DIR$/first-network/docker-compose-nodes.yaml" />
+        <option value="$PROJECT_DIR$/first-network/scripts/peer0JoinChannel.sh" />
+        <option value="$PROJECT_DIR$/chaincode/gmtest/gm_encrypt.go" />
+        <option value="$PROJECT_DIR$/first-network/scripts/installCyrpto.sh" />
+        <option value="$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt_test.go" />
+        <option value="$PROJECT_DIR$/first-network/app.js" />
+        <option value="$PROJECT_DIR$/first-network/scripts/installGM.sh" />
+        <option value="$PROJECT_DIR$/first-network/config.js" />
+        <option value="$PROJECT_DIR$/first-network/base/docker-compose-base.yaml" />
+        <option value="$PROJECT_DIR$/first-network/scripts/createChannel.sh" />
+        <option value="$PROJECT_DIR$/first-network/scripts/utils.sh" />
+        <option value="$PROJECT_DIR$/first-network/peer2.yaml" />
+        <option value="$PROJECT_DIR$/first-network/base/peer-base.yaml" />
+        <option value="$PROJECT_DIR$/first-network/scripts/installChaincode.sh" />
+        <option value="$PROJECT_DIR$/first-network/scripts/jChannel.sh" />
+        <option value="$PROJECT_DIR$/first-network/scripts/joinChannel.sh" />
+        <option value="$PROJECT_DIR$/first-network/addNode.sh" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config.yaml" />
+        <option value="$PROJECT_DIR$/first-network/configtx.yaml" />
+        <option value="$PROJECT_DIR$/first-network/other.yaml" />
+        <option value="$PROJECT_DIR$/first-network/docker-compose-etcdraft2.yaml" />
+        <option value="$PROJECT_DIR$/first-network/docker-compose-cli.yaml" />
+        <option value="$PROJECT_DIR$/first-network/swagger2markup.sh" />
+        <option value="$PROJECT_DIR$/chaincode/marbles02/go/marbles_chaincode.go" />
+        <option value="$PROJECT_DIR$/first-network/scripts/script.sh" />
+        <option value="$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt.go" />
+        <option value="$PROJECT_DIR$/first-network/byfn.sh" />
+        <option value="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/addUser.sh" />
+        <option value="$PROJECT_DIR$/fabcar/javascript-low-level/enrollAdmin.js" />
+        <option value="$PROJECT_DIR$/first-network/sdk.yaml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/balance-transfer/artifacts/src/github.com/example_cc/node/package.json" />
+      <path value="$PROJECT_DIR$/balance-transfer/package.json" />
+      <path value="$PROJECT_DIR$/balance-transfer/typescript/artifacts/src/github.com/example_cc/node/package.json" />
+      <path value="$PROJECT_DIR$/balance-transfer/typescript/package.json" />
+      <path value="$PROJECT_DIR$/chaincode/chaincode_example02/node/package.json" />
+      <path value="$PROJECT_DIR$/chaincode/fabcar/javascript-low-level/package.json" />
+      <path value="$PROJECT_DIR$/chaincode/fabcar/javascript/package.json" />
+      <path value="$PROJECT_DIR$/chaincode/fabcar/typescript/package.json" />
+      <path value="$PROJECT_DIR$/chaincode/marbles02/node/package.json" />
+      <path value="$PROJECT_DIR$/commercial-paper/organization/digibank/application/package.json" />
+      <path value="$PROJECT_DIR$/commercial-paper/organization/digibank/contract/package.json" />
+      <path value="$PROJECT_DIR$/commercial-paper/organization/magnetocorp/application/package.json" />
+      <path value="$PROJECT_DIR$/commercial-paper/organization/magnetocorp/contract/package.json" />
+      <path value="$PROJECT_DIR$/fabcar/javascript-low-level/package.json" />
+      <path value="$PROJECT_DIR$/fabcar/javascript/package.json" />
+      <path value="$PROJECT_DIR$/fabcar/typescript/package.json" />
+      <path value="$PROJECT_DIR$/off_chain_data/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="792" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="fabric-samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabric-samples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fabric-samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabric-samples" type="462c0819:PsiDirectoryNode" />
+              <item name="chaincode" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fabric-samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabric-samples" type="462c0819:PsiDirectoryNode" />
+              <item name="chaincode" type="462c0819:PsiDirectoryNode" />
+              <item name="gm_encrypt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fabric-samples" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabric-samples" type="462c0819:PsiDirectoryNode" />
+              <item name="first-network" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="/usr/local/lib/node_modules/eslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chaincode/gmtest" />
+      <recent name="$PROJECT_DIR$/first-network" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/first-network/scripts" />
+      <recent name="$PROJECT_DIR$/first-network" />
+      <recent name="$PROJECT_DIR$/first-network/channel-artifacts" />
+      <recent name="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp" />
+      <recent name="$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="gm_encrypt_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="fabric-samples" />
+      <working_directory value="$PROJECT_DIR$/chaincode/gmtest" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <package value="github.com/hyperledger/fabric-samples" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/chaincode/gmtest/gm_encrypt_test.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.gm_encrypt_test.go" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="792" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24391988" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" visible="true" weight="0.75857145" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.6242857" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49928468" visible="true" weight="0.5871429" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5007153" side_tool="true" weight="0.6242857" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/first-network/scripts/joinChannel.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="50" column="4" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/marbles02_private/go/marbles_chaincode_private.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4159">
+          <caret line="356" column="24" selection-start-line="356" selection-start-column="24" selection-end-line="356" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/ccp-generate.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/addNode.sh" />
+    <entry file="file://$PROJECT_DIR$/first-network/utils.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/base/docker-compose-base.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/other.yaml" />
+    <entry file="file://$PROJECT_DIR$/first-network/channel-artifacts/channel.tx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/channel-artifacts/genesis.block">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/docker-compose-etcdraft2.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1158">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/swagger2markup.sh" />
+    <entry file="file://$PROJECT_DIR$/chaincode/chaincode_example02/node/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/fabcar/typescript/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-87" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/fabcar/typescript/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/fabcar/typescript/tslint.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/marbles02/node/META-INF/statedb/couchdb/indexes/indexOwner.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/chaincode_example02/node/chaincode_example02.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/marbles02/node/marbles_chaincode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1159">
+          <caret line="65" column="40" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/users/User2@org1.example.com/msp/signcerts/User2@org1.example.com-cert.pem" />
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/scripts/utils.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="130" column="20" selection-start-line="130" selection-end-line="130" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/scripts/script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="97" column="28" selection-start-line="97" selection-start-column="28" selection-end-line="97" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../fabric/core/chaincode/shim/interfaces.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/chaincode_example02/go/chaincode_example02.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="106" column="62" selection-start-line="106" selection-start-column="56" selection-end-line="106" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/marbles02/node/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/marbles02/go/marbles_chaincode.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="102" column="10" selection-start-line="102" selection-start-column="10" selection-end-line="102" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/ca/client/fabric-ca-client-config.yaml" />
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/ca-users/User2@org1.example.com/msp/signcerts/cert.pem" />
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/ca-users/User2@org1.example.com/msp/keystore/59e347a08bfb1c67c0b2afb510ea91e543f8234c2f5e4448991977301bb836cb_sk" />
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/configtx.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="94" column="51" selection-start-line="94" selection-start-column="44" selection-end-line="94" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/ca/server/fabric-ca-server-config.yaml" />
+    <entry file="file://$PROJECT_DIR$/first-network/byfn.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="360" column="8" selection-start-line="360" selection-start-column="8" selection-end-line="360" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/crypto-config/peerOrganizations/org1.example.com/addUser.sh" />
+    <entry file="file://$PROJECT_DIR$/first-network/connection-org3.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="53" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript/enrollAdmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="24" column="44" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript/invoke.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-461" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="32" column="59" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/enrollAdmin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="50" column="37" lean-forward="true" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript/registerUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="46" column="34" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/startFabric.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt_test.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/sdk.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/first-network/docker-compose-cli.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1216">
+          <caret line="64" selection-start-line="64" selection-end-line="65" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/invoke.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/query.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fabcar/javascript-low-level/registerUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270389">
+          <caret line="14244" column="4" selection-start-line="14244" selection-start-column="4" selection-end-line="14244" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chaincode/gm_encrypt/gm_encrypt.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="113" column="38" selection-start-line="113" selection-start-column="25" selection-end-line="113" selection-end-column="38" />
+          <folding>
+            <element signature="e#100#398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

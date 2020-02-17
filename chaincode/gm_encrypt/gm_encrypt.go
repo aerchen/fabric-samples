@@ -43,6 +43,13 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	function, args := stub.GetFunctionAndParameters()
 	fmt.Println("gm crypt test chaincode Invoke", function, args)
 
+	creatorBytes, err := stub.GetCreator()
+	if err != nil {
+		return shim.Error(fmt.Sprintf("Could not get creator, err %s", err))
+	}
+	fmt.Printf("gm crypt test chaincode Invoker: %s", creatorBytes)
+
+
 	if function == "invoke" {
 		// Make payment of X units from A to B
 		return t.invoke(stub, args)
@@ -90,6 +97,13 @@ func (t *SimpleChaincode) invoke(stub shim.ChaincodeStubInterface, args []string
 	A = args[0]
 	B = args[1]
 
+	Avalbytes, err := stub.GetState(A)
+	if err != nil {
+		return shim.Error("Failed to get state")
+	}
+	if Avalbytes == nil {
+		return shim.Error("Entity not found")
+	}
 
 	// Write the state back to the ledger
 	err = stub.PutState(A, []byte(B))
@@ -97,6 +111,10 @@ func (t *SimpleChaincode) invoke(stub shim.ChaincodeStubInterface, args []string
 		return shim.Error(err.Error())
 	}
 
+	err = stub.SetEvent("invokeSuccess", []byte(B))
+	if err != nil {
+		return shim.Error(err.Error())
+	}
 	return shim.Success(nil)
 }
 
